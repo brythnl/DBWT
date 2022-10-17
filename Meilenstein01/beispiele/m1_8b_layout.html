@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+    <style>
+        h2 {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        div {
+            border: 2px solid black;
+            display: grid;
+            margin: 20px;
+        }
+
+        .container1 {
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .container2 {
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+        }
+
+        .container3 {
+            justify-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>GRID 1</h2>
+    <div class="container1">
+        <h3 class="item">top</h3>
+        <h3 class="item">middle</h3>
+        <h3 class="item">bottom</h3>
+    </div>
+
+    <h2>GRID 2</h2>
+    <div class="container2">
+        <h3 class="item">left</h3>
+        <h3 class="item">center</h3>
+        <h3 class="item">right</h3>
+    </div>
+
+    <h2>GRID 3</h2>
+    <div class="container3">
+        <h3 class="item">MID</h3>
+    </div>
+    
+</body>
+</html>
