@@ -28,7 +28,6 @@ header {
 }
 
 h1 {
-    display: inline-block;
     padding: 20px;
     margin-left: 16px;
 }
@@ -37,7 +36,6 @@ nav {
     display: flex;
     justify-content: left;
     align-items: center;
-
 }
 
 .navbar {
