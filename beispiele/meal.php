@@ -1,7 +1,6 @@
 <?php
 const GET_PARAM_MIN_STARS = 'search_min_stars';
 const GET_PARAM_SEARCH_TEXT = 'search_text';
-const GET_PARAM_SHOW_DESC = 'show_description'; // 4e) Show/hide meal description 
 
 /**
  * List of all allergens.
@@ -65,6 +64,26 @@ function calcMeanStars(array $ratings) : float {
     return $sum;
 }
 
+// 4e) Show/hide meal description
+$style = 'hide';
+if (isset($_GET['show_description'])) {
+    $showdesc = $_GET['show_description'];
+    if ($showdesc == 1) {
+        $showdesc = 0;
+        $style = 'show';
+    } else if ($showdesc == 0) {
+        $showdesc = 1;
+        $style = 'hide';
+}
+}
+
+// 4f) Search value stays in input field
+if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
+    $search = htmlentities($_GET[GET_PARAM_SEARCH_TEXT]);
+} else {
+    $search = '';
+} 
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -78,11 +97,24 @@ function calcMeanStars(array $ratings) : float {
             .rating {
                 color: darkgray;
             }
+            .hide {
+                display: none;
+            }
+            .show {
+                display: block;
+            }
         </style>
     </head>
     <body>
         <h1>Gericht: <?php echo $meal['name']; ?></h1>
-        <p><?php echo $meal['description']; ?></p>
+
+        <a href="<?php echo '?show_description=' . $showdesc; ?>">Beschreibung ein/ausblenden</a>
+        <p class="<?php echo $style ?>">
+            <?php echo $meal['description']; ?>
+        </p>
+        
+        <h3>Interner Preis: <?php echo number_format($meal['price_intern'], 2, ',', '.') . '€'; ?></h3>
+        <h3>Externer Preis: <?php echo number_format($meal['price_extern'], 2, ',', '.') . '€'; ?></h3>
         <h2>Allergene:</h2>
         <ul><?php foreach($meal['allergens'] as $allergen_key) { // 4b) Allergens in an unordered list
             echo "<li>$allergens[$allergen_key]</li>";
@@ -90,7 +122,7 @@ function calcMeanStars(array $ratings) : float {
         <h1>Bewertungen (Insgesamt: <?php echo calcMeanStars($ratings); ?>)</h1>
         <form method="get">
             <label for="search_text">Filter:</label>
-            <input id="search_text" type="text" name="search_text">
+            <input id="search_text" type="text" name="search_text" value="<?php echo $search ?>">
             <input type="submit" value="Suchen">
         </form>
         <table class="rating">
