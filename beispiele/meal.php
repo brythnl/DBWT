@@ -1,4 +1,9 @@
 <?php
+/**
+* Praktikum DBWT. Autoren:
+* Bryan Nathanael, Joestin, 3517701
+* Alexander, Matthew, 3532885
+*/
 const GET_PARAM_MIN_STARS = 'search_min_stars';
 const GET_PARAM_SEARCH_TEXT = 'search_text';
 
@@ -65,14 +70,15 @@ function calcMeanStars(array $ratings) : float {
 }
 
 // 4e) Show/hide meal description
+$showdesc = 0;
 $style = 'hide';
 if (isset($_GET['show_description'])) {
     $showdesc = $_GET['show_description'];
     if ($showdesc == 1) {
-        $showdesc = 0;
+        $showdesc = 0; // hide on next click-event 
         $style = 'show';
     } else if ($showdesc == 0) {
-        $showdesc = 1;
+        $showdesc = 1; // show on next click-event 
         $style = 'hide';
 }
 }
@@ -84,6 +90,28 @@ if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
     $search = '';
 } 
 
+// 4g) Language options
+$en = [
+    'Sprache ändern' => 'Choose language',
+    'Beschreibung ein/ausblenden' => 'Show/hide description',
+    'Interner Preis' => 'Internal Price',
+    'Externer Preis' => 'External Price',
+    'Allergene:' => 'Allergens:',
+    'Bewertungen (Insgesamt:' => 'Rating (Overall:',
+    'Suchen' => 'Search'
+];
+
+$sprache = 'de';
+
+if (isset($_GET['sprache'])) {
+    $sprache = $_GET['sprache'];
+    if ($sprache == 'de') {
+        $sprache = 'en';
+    } else if ($sprache == 'en') {
+        $sprache = 'de';
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -93,6 +121,15 @@ if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
         <style>
             * {
                 font-family: Arial, serif;
+            }
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            #sprache {
+                position: absolute;
+                right: 20px;
             }
             .rating {
                 color: darkgray;
@@ -106,13 +143,17 @@ if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
         </style>
     </head>
     <body>
-        <h1>Gericht: <?php echo $meal['name']; ?></h1>
-
+        <header>
+            <h1>Gericht: <?php echo $meal['name']; ?></h1>
+            <a href="<?php echo '?sprache=' . $sprache ?>" id="sprache">Sprache ändern</a>
+        </header>
+        
         <a href="<?php echo '?show_description=' . $showdesc; ?>">Beschreibung ein/ausblenden</a>
         <p class="<?php echo $style ?>">
             <?php echo $meal['description']; ?>
         </p>
         
+        <!-- 4h) Preis-Format -->
         <h3>Interner Preis: <?php echo number_format($meal['price_intern'], 2, ',', '.') . '€'; ?></h3>
         <h3>Externer Preis: <?php echo number_format($meal['price_extern'], 2, ',', '.') . '€'; ?></h3>
         <h2>Allergene:</h2>
