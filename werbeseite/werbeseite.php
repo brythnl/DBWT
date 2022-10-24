@@ -1,3 +1,7 @@
+<?php
+    include('gerichtdaten.php');
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
