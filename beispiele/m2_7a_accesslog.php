@@ -1,6 +1,6 @@
 <?php
 
-$file = fopen('.accesslog.txt', 'a');
+$file = fopen('accesslog.txt', 'a');
 
 if (!$file) {
     die("Error beim Öffnen");
