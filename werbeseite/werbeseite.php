@@ -36,6 +36,23 @@
             </div>
         </article>
 
+        <section id="gerichte">
+            <h2>Gerichte</h2>
+            <div id="wok">
+                <?php echo '<h3>' . $Gericht['wok']['name'] . '</h3>' . $Gericht['wok']['bild'] ?>
+            </div>
+            <div id="vegetarisch">
+                <?php echo '<h3>' . $Gericht['vegetarisch']['name'] . '</h3>' . $Gericht['vegetarisch']['bild'] ?>
+            </div>
+            <div id="klassiker">
+                <?php echo '<h3>' . $Gericht['klassiker']['name'] . '</h3>' . $Gericht['klassiker']['bild'] ?>
+            </div>
+            <div id="tellergericht">
+                <?php echo '<h3>' . $Gericht['tellergericht']['name'] . '</h3>' . $Gericht['tellergericht']['bild'] ?>
+            </div>
+            
+        </section>
+
         <section id="speisen">
             <h2>Köstlichkeiten, die Sie erwarten</h2>
             <table>
