@@ -76,6 +76,32 @@ li > a:hover {
     padding: 16px 8px;
 }
 
+/***** Gerichte *****/
+#wok-img {
+    display: inline-block;
+    width: 700px;
+    margin: 20px 0 50px 0;
+}
+
+#veg-img {
+    display: inline-block;
+    width: 700px;
+    margin: 20px 0 50px 0;
+}
+
+#klassik-img {
+    display: inline-block;
+    width: 700px;
+    margin: 20px 0 50px 0;
+}
+
+#teller-img {
+    display: inline-block;
+    width: 700px;
+    margin: 20px 0 50px 0;
+}
+
+
 /***** Essen-Tabelle *****/
 th, td {
     border: 2px solid black;
