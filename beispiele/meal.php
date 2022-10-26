@@ -46,7 +46,7 @@ $showRatings = [];
 if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
     $searchTerm = $_GET[GET_PARAM_SEARCH_TEXT];
     foreach ($ratings as $rating) {
-        if (strpos(strtolower($rating['text']), strtolower($searchTerm)) !== false) { // 4c) make search case-insensitive
+        if (stripos($rating['text'], $searchTerm) !== false) { // 4c) make search case-insensitive
             $showRatings[] = $rating;
         }
     }
@@ -101,9 +101,9 @@ $en = [
     'Suchen' => 'Search'
 ];
 
-$sprache = 'de';
-
-if (isset($_GET['sprache'])) {
+if (!isset($_GET['sprache'])) {
+    $sprache = 'de';
+} else {
     $sprache = $_GET['sprache'];
     if ($sprache == 'de') {
         $sprache = 'en';
