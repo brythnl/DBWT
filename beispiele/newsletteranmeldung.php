@@ -25,7 +25,7 @@
                 <input size="26" type="text" name="vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vornamen ein" required><br>
                 <label for="nachname">Nachname*</label><br>
                 <input size="28" type="text" name="nachname" id="nachname" placeholder="Bitte geben Sie Ihren Nachnamen ein" required><br>
-                <label for="email">E-Mail* (Vorname.Nachname@example.com)</label><br>
+                <label for="email">E-Mail*/label><br>
                 <input size="22" type="email" name="email" id="email" placeholder="Bitte geben Sie Ihre E-Mail ein" required><br>
                 <label for="interval">Benachrichtigungsinterval</label><br>
                 <select name="interval" id="interval">

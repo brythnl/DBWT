@@ -22,7 +22,7 @@ if (empty($nachname)) {
     $fehler = "Nachname muss mindestens 1 Zeichen enthalten";
 }
 
-if ($email !== ($vorname . "." . $nachname . "@example.com")) {
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $fehler = "E-Mail Vorlage nicht akzeptiert!";
 }
 
@@ -31,5 +31,27 @@ if (strpos_array($email, $spam)) {
     $fehler = "Spam E-Mails detected!";
 }
 
+if ($fehler) {
+    echo $fehler;
+} else {
+    $data = [
+        'anrede' => $anrede,
+        'vorname' => $vorname,
+        'nachname' => $nachname,
+        'dschutz' => $dschutz,
+        'email' => $email
+    ];
+
+    $file = fopen('./formdata.txt', 'a');
+    if (!$file) {
+        die("Error beim Öffnen");
+    }
+
+    foreach ($data as $key => $value) {
+        $line = "$key;$value\n";
+        fwrite($file, $line);
+    }
+    fwrite($file, "\n\n");
+}
 
 ?>
