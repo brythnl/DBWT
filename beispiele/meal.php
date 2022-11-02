@@ -94,21 +94,9 @@ function calcMeanStars(array $ratings) : float {
     return $sum;
 }
 
-// 4i) TOP/FLOPP
-
-
 // 4e) Show/hide meal description
-$showdesc = 1; // um $showdesc zu 0 umwandeln
-$style = 'hide';
 if (isset($_GET[GET_SHOW_DESCRIPTION])) {
     $showdesc = $_GET[GET_SHOW_DESCRIPTION];
-    if ($showdesc == 1) {
-        $showdesc = 0; // hide on next click-event 
-        $style = 'show';
-    } else if ($showdesc == 0) {
-        $showdesc = 1; // show on next click-event 
-        $style = 'hide';
-}
 }
 
 // 4f) Search value stays in input field
@@ -118,11 +106,14 @@ if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
     $search = '';
 } 
 
-// 4g) Language optionsET_SPRACHE
+// 4g) Language options
 $en = [
     'Gericht: ' => 'Meal: ',
-    'Sprache ändern' => 'Change language',
-    'Beschreibung ein/ausblenden' => 'Show/hide description',
+    'Deutsch' => 'German',
+    'Englisch' => 'English',
+    'Beschreibung' => 'Description',
+    'Ein' => 'Show',
+    'Aus' => 'Hide',
     'Interner Preis: ' => 'Internal Price: ',
     'Externer Preis: ' => 'External Price: ',
     'Allergene:' => 'Allergens:',
@@ -132,8 +123,11 @@ $en = [
 
 $de = [
     'Gericht: ' => 'Gericht: ',
-    'Sprache ändern' => 'Sprache ändern',
-    'Beschreibung ein/ausblenden' => 'Beschreibung ein/ausblenden',
+    'Deutsch' => 'Deutsch',
+    'Englisch' => 'Englisch',
+    'Beschreibung' => 'Beschreibung',
+    'Ein' => 'Ein',
+    'Aus' => 'Aus',
     'Interner Preis: ' => 'Interner Preis: ',
     'Externer Preis: ' => 'Externer Preis: ',
     'Allergene:' => 'Allergene:',
@@ -141,15 +135,12 @@ $de = [
     'Suchen' => 'Suchen'
 ];
 
-$sprache = 'de';
 $lang = $de;
 if (isset($_GET[GET_SPRACHE])) {
     $sprache = $_GET[GET_SPRACHE];
     if ($sprache == 'de') {
-        $sprache = 'en';
         $lang = $de;
     } else if ($sprache == 'en') {
-        $sprache = 'de';
         $lang = $en;
     }
 }
@@ -169,42 +160,40 @@ if (isset($_GET[GET_SPRACHE])) {
                 justify-content: space-between;
                 align-items: center;
             }
-            #sprache {
-                position: absolute;
-                right: 20px;
-            }
-            .rating {
-                color: darkgray;
-            }
-            .hide {
-                display: none;
-            }
-            .show {
-                display: block;
-            }
         </style>
     </head>
     <body>
         <header>
             <h1><?php echo $lang['Gericht: '] . $meal['name']; ?></h1>
             <form method="get">
-                <button id="sprache" type="submit" value="<?php $sprache ?>" name="sprache">Sprache ändern</button>
-            </form>
-            
+                <button id="de" type="submit" value="de" name="sprache"><?php echo $lang['Deutsch']; ?></button>
+                <button id="en" type="submit" value="en" name="sprache"><?php echo $lang['Englisch']; ?></button>
+            </form>   
         </header>
         
-        <a href="<?php echo '?show_description=' . $showdesc; ?>"><?php echo $lang['Beschreibung ein/ausblenden']; ?></a>
-        <p class="<?php echo $style ?>">
-            <?php echo $meal['description']; ?>
+        <h2><?php echo $lang['Beschreibung']; ?></h2>
+        <form method="get">
+            <button id="descEin" type="submit" value="1" name="show_description"><?php echo $lang['Ein']; ?></button>
+            <button id="descAus" type="submit" value="0" name="show_description"><?php echo $lang['Aus']; ?></button>
+        </form> 
+        <p>
+            <?php if ($showdesc == 1) { 
+                    echo $meal['description']; 
+                  } else if ($showdesc = 0) {
+                    echo "";
+                  }
+            ?>
         </p>
-        
+        <br>
         <!-- 4h) Preis-Format -->
-        <h3><?php echo $lang['Interner Preis: '] . number_format($meal['price_intern'], 2, ',', '.') . '€'; ?></h3>
-        <h3><?php echo $lang['Externer Preis: '] . number_format($meal['price_extern'], 2, ',', '.') . '€'; ?></h3>
+        <h2><?php echo $lang['Interner Preis: '] . number_format($meal['price_intern'], 2, ',', '.') . '€'; ?></h2>
+        <h2><?php echo $lang['Externer Preis: '] . number_format($meal['price_extern'], 2, ',', '.') . '€'; ?></h2>
+        <br>
         <h2><?php echo $lang['Allergene:']; ?></h2>
         <ul><?php foreach($meal['allergens'] as $allergen_key) { // 4b) Allergens in an unordered list
             echo "<li>$allergens[$allergen_key]</li>";
         }; ?></ul>
+        <br>
         <h1><?php echo $lang['Bewertungen (Insgesamt: '] . calcMeanStars($ratings) . ')'; ?></h1>
         <form method="get">
             <label for="search_text">Filter:</label>
