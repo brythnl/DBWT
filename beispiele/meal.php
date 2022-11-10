@@ -87,7 +87,7 @@ if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
 }
 
 function calcMeanStars(array $ratings) : float {
-    $sum = 0; // 4b) change from 1 into 0
+    $sum = 0; // 4d) change from 1 into 0
     foreach ($ratings as $rating) {
         $sum += $rating['stars'] / count($ratings);
     }
@@ -95,13 +95,14 @@ function calcMeanStars(array $ratings) : float {
 }
 
 // 4e) Show/hide meal description
+$showdesc = 0;
 if (isset($_GET[GET_SHOW_DESCRIPTION])) {
     $showdesc = $_GET[GET_SHOW_DESCRIPTION];
 }
 
 // 4f) Search value stays in input field
 if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
-    $search = htmlentities($_GET[GET_PARAM_SEARCH_TEXT]); //
+    $search = ($_GET[GET_PARAM_SEARCH_TEXT]); //
 } else {
     $search = '';
 } 
