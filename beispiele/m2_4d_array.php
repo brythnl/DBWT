@@ -12,7 +12,7 @@ $famousMeals = [
 ];
 
 function keineGewinner($famousMeals) {
-    $totalGewinner = [];
+    $totalGewinner = []; // years with winners
     for ($meal = 1; $meal <= 4; $meal++) { 
         if (gettype($famousMeals[$meal]['winner']) == 'array') {
             foreach($famousMeals[$meal]['winner'] as $year) {
@@ -23,14 +23,21 @@ function keineGewinner($famousMeals) {
         }
     }
 
-    $totalYears = [];
-    for ($i = 0; $i <= 20; $i++) {
-        $totalYears[] = 2000 + $i;
+    $totalYears = []; // 2000 - 2022
+    for ($i = 2000; $i <= 2022; $i++) {
+        $totalYears[] = $i;
     }
     
     return array_diff($totalYears, $totalGewinner); // returns the years without any winners
 }
 ?>
+
+<?php 
+
+echo "Jahren mit keinen Gewinnern: ";
+foreach (keineGewinner($famousMeals) as $year) {
+    echo $year . ' ';
+} ?>
 
 <ol>
 <?php foreach ($famousMeals as $meal) {
