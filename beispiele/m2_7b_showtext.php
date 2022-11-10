@@ -19,8 +19,12 @@ if (isset($_GET['suchwort'])) {
     while (!feof($file)) {
         $puffer = fgets($file);
         if (stripos($puffer, $suchwort) !== false) {
-            $line_array = explode(";", $puffer);
-            echo $line_array[1];
+            foreach (explode(";", $puffer) as $wort) {
+                if (strtolower($wort) !== strtolower($suchwort)) {
+                    echo $wort;
+                    break;
+                }
+            }
 
             $found = true;
             break;
@@ -30,6 +34,8 @@ if (isset($_GET['suchwort'])) {
     if ($found === false) {
         echo "Das gesuchte Wort " . $suchwort . " ist nicht enthalten.";
     }
+
+    fclose($file);
 }
 
 ?>
