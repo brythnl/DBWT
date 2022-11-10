@@ -38,19 +38,11 @@
 
         <section id="gerichte">
             <h2>Gerichte</h2>
-            <div id="wok">
-                <?php echo '<h3>' . $Gericht['wok']['name'] . '</h3>' . $Gericht['wok']['bild'] ?>
-            </div>
-            <div id="vegetarisch">
-                <?php echo '<h3>' . $Gericht['vegetarisch']['name'] . '</h3>' . $Gericht['vegetarisch']['bild'] ?>
-            </div>
-            <div id="klassiker">
-                <?php echo '<h3>' . $Gericht['klassiker']['name'] . '</h3>' . $Gericht['klassiker']['bild'] ?>
-            </div>
-            <div id="tellergericht">
-                <?php echo '<h3>' . $Gericht['tellergericht']['name'] . '</h3>' . $Gericht['tellergericht']['bild'] ?>
-            </div>
-            
+            <?php 
+                foreach ($Gericht as $meal) {
+                    echo '<h3>' . $meal['name'] . '</h3>' . $meal['bild']; 
+                }
+            ?>
         </section>
 
         <section id="speisen">
