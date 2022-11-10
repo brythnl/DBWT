@@ -59,7 +59,7 @@ if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
         }
     }
 } else if (isset($_GET['top'])) {
-    $max = $rating['stars'];
+    $max = $ratings[0]['stars'];
     foreach ($ratings as $rating) {
         if ($rating['stars'] > $max) {
             $max = $rating['stars'];
@@ -71,8 +71,8 @@ if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
         }
     }
 } else if (isset($_GET['flopp'])) {
+    $min = $ratings[0]['stars'];
     foreach ($ratings as $rating) {
-        $min = $rating['stars'];
         if ($rating['stars'] < $min) {
             $min = $rating['stars'];
         }
