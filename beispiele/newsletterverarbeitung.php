@@ -52,6 +52,8 @@ if ($fehler) {
         fwrite($file, $line);
     }
     fwrite($file, "\n\n");
+
+    fclose($file);
 }
 
 ?>
