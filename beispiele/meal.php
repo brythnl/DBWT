@@ -95,9 +95,15 @@ function calcMeanStars(array $ratings) : float {
 }
 
 // 4e) Show/hide meal description
-$showdesc = 0;
-if (isset($_GET[GET_SHOW_DESCRIPTION])) {
+if (isset($_GET[GET_SHOW_DESCRIPTION]) ) {
     $showdesc = $_GET[GET_SHOW_DESCRIPTION];
+    if ($showdesc == 1 && $_GET['change'] == 'desc') {
+        $showdesc = 0; // hide on next click-event 
+    } else if ($showdesc == 0 && $_GET['change'] == 'desc') {
+        $showdesc = 1; // show on next click-event 
+    }
+} else {
+    $showdesc = 0;
 }
 
 // 4f) Search value stays in input field
@@ -110,11 +116,8 @@ if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
 // 4g) Language options
 $en = [
     'Gericht: ' => 'Meal: ',
-    'Deutsch' => 'German',
-    'Englisch' => 'English',
-    'Beschreibung' => 'Description',
-    'Ein' => 'Show',
-    'Aus' => 'Hide',
+    'Sprache ändern' => 'Change language',
+    'Beschreibung ein/aus' => 'Show/hide description',
     'Interner Preis: ' => 'Internal Price: ',
     'Externer Preis: ' => 'External Price: ',
     'Allergene:' => 'Allergens:',
@@ -124,11 +127,8 @@ $en = [
 
 $de = [
     'Gericht: ' => 'Gericht: ',
-    'Deutsch' => 'Deutsch',
-    'Englisch' => 'Englisch',
-    'Beschreibung' => 'Beschreibung',
-    'Ein' => 'Ein',
-    'Aus' => 'Aus',
+    'Sprache ändern' => 'Sprache ändern',
+    'Beschreibung ein/aus' => 'Beschreibung ein/aus',
     'Interner Preis: ' => 'Interner Preis: ',
     'Externer Preis: ' => 'Externer Preis: ',
     'Allergene:' => 'Allergene:',
@@ -136,12 +136,20 @@ $de = [
     'Suchen' => 'Suchen'
 ];
 
+
 $lang = $de;
+$sprache = 'de';
 if (isset($_GET[GET_SPRACHE])) {
     $sprache = $_GET[GET_SPRACHE];
     if ($sprache == 'de') {
+        if ($_GET['change'] == 'lang') {
+            $sprache = 'en';
+        }    
         $lang = $de;
     } else if ($sprache == 'en') {
+        if ($_GET['change'] == 'lang') {
+            $sprache = 'de';
+        }    
         $lang = $en;
     }
 }
@@ -166,19 +174,15 @@ if (isset($_GET[GET_SPRACHE])) {
     <body>
         <header>
             <h1><?php echo $lang['Gericht: '] . $meal['name']; ?></h1>
-            <form method="get">
-                <button id="de" type="submit" value="de" name="sprache"><?php echo $lang['Deutsch']; ?></button>
-                <button id="en" type="submit" value="en" name="sprache"><?php echo $lang['Englisch']; ?></button>
-            </form>   
+            <a href="<?php
+                     echo '?show_description=' . $showdesc . '&sprache=' . $sprache . '&change=lang'; ?>"><?php echo $lang['Sprache ändern']; ?></a>
         </header>
         
-        <h2><?php echo $lang['Beschreibung']; ?></h2>
-        <form method="get">
-            <button id="descEin" type="submit" value="1" name="show_description"><?php echo $lang['Ein']; ?></button>
-            <button id="descAus" type="submit" value="0" name="show_description"><?php echo $lang['Aus']; ?></button>
-        </form> 
+        <a href="<?php 
+                echo '?show_description=' . $showdesc . '&sprache=' . $sprache . '&change=desc'; ?>"><?php echo $lang['Beschreibung ein/aus']; ?></a>
         <p>
-            <?php if ($showdesc == 1) { 
+            <?php 
+                if ($showdesc == 1) { 
                     echo $meal['description']; 
                   } else if ($showdesc = 0) {
                     echo "";
