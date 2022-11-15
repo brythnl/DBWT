@@ -9,11 +9,10 @@ function strpos_array($haystack, $needle_array) {
     return 0;
 } 
 
-$anrede = $_POST['anrede'] ?? NULL;
-$vorname = trim($_POST['vorname'] ?? NULL);
-$nachname = trim($_POST['nachname'] ?? NULL);
-$dschutz = $_POST['dschutz'] ?? NULL;
+$name = trim($_POST['name'] ?? NULL);
 $email = $_POST['email'] ?? NULL;
+$sprache = $_POST['sprache'] ?? NULL;
+$dschutz = $_POST['dschutz'] ?? NULL;
 
 if (empty($vorname)) {
     $fehler = "Vorname muss mindestens 1 Zeichen enthalten";
@@ -35,11 +34,10 @@ if ($fehler) {
     echo $fehler;
 } else {
     $data = [
-        'anrede' => $anrede,
-        'vorname' => $vorname,
-        'nachname' => $nachname,
-        'dschutz' => $dschutz,
-        'email' => $email
+        'name' => $name,
+        'email' => $email,
+        'sprache' => $sprache,
+        'dschutz' => $dschutz
     ];
 
     $file = fopen('./formdata.txt', 'a');
