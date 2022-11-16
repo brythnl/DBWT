@@ -42,3 +42,5 @@ $result = mysqli_query($link, $sql);
     }
     ?>
 </table>
+
+<?php mysqli_close($link); ?>
