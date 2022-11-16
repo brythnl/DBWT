@@ -36,43 +36,18 @@
             </div>
         </article>
 
-        <section id="gerichte">
+        <!-- <section id="gerichte">
             <h2>Gerichte</h2>
             <?php 
-                foreach ($Gericht as $meal) {
+                /*foreach ($Gericht as $meal) {
                     echo '<h3>' . $meal['name'] . '</h3>' . $meal['bild']; 
-                }
+                }*/
             ?>
-        </section>
+        </section> -->
 
         <section id="speisen">
             <h2>Köstlichkeiten, die Sie erwarten</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Preis intern</th>
-                        <th>Preis extern</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="essen">Rindfleisch mit Bambus, Kaiserschoten und rotem Paprika, dazu Mie Nudeln</td>
-                        <td class="preis">3,50</td>
-                        <td class="preis">6,20</td>
-                    </tr>
-                    <tr>
-                        <td class="essen">Spinatrisotto mit kleinen Samosateigecken und gemischter Salat</td>
-                        <td class="preis">2,90</td>
-                        <td class="preis">5,30</td>
-                    </tr>
-                    <tr>
-                        <td class="etc">...</td>
-                        <td class="etc">...</td>
-                        <td class="etc">...</td>
-                    </tr>
-                </tbody>
-            </table>
+            <?php include ('./getGericht.php'); ?>
         </section>
 
         <section id="zahlen">
@@ -84,8 +59,9 @@
             </ul>
         </section>
 
-        <section id="kontakt">
+         <section id="kontakt">
             <h2>Interesse geweckt? Wir informieren Sie!</h2>
+            <?php include './newsletterverarbeitung.php'; ?>
             <form method="post">
                 <div id="upper">
                     <label for="name">Ihr Name:</label>
@@ -93,7 +69,7 @@
                     <label for="sprache">Newsletter bitte in:</label>
                 </div>
                 <div id="middle">                   
-                    <input type="text" name="name" id="name" placeholder="Vorname" required>
+                    <input type="text" name="name" id="name" placeholder="Name" required>
                     <input type="text" name="email" id="email" required>
                     <select name="sprache" id="sprache">
                         <option value="deutsch" selected>Deutsch</option>
@@ -104,7 +80,7 @@
                 <div id="lower">
                     <input type="checkbox" name="dschutz" id="dschutz" required>
                     <label for="dschutz">Den Datenschutzbestimmungen stimme ich zu</label>
-                    <input type="submit" id="submit" value="Zum Newsletter anmelden" disabled>
+                    <input type="submit" id="submit" value="Zum Newsletter anmelden" >
                 </div>
             </form>
         </section>
