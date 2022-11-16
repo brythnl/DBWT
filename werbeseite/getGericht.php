@@ -26,8 +26,9 @@ $allergenresult = mysqli_query($link, $allergensql);
         <th>Externer Preis</th>
         <th>Allergene</th>
     </tr>
-        <?php while ($gerichtrow = mysqli_fetch_assoc($gerichtresult)) {
-        echo '<tr>';
+    <?php 
+    while ($gerichtrow = mysqli_fetch_assoc($gerichtresult)) {
+    echo '<tr>';
         echo '<td>' . $gerichtrow['name'] . '</td>';
         echo '<td>' . $gerichtrow['preis_intern'] . '</td>';
         echo '<td>' . $gerichtrow['preis_extern'] . '</td>';
@@ -37,7 +38,14 @@ $allergenresult = mysqli_query($link, $allergensql);
                 echo $allergenrow['code'] . ' ';
             }
         }
+        mysqli_data_seek($allergenresult, 0); // Set result pointer back to starting row
         echo '</td>'; 
-        echo '</tr>';
-        } ?>
+    echo '</tr>';
+    } ?>
 </table>
+
+<?php 
+
+
+
+
