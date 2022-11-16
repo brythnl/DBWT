@@ -14,11 +14,8 @@ $email = $_POST['email'] ?? NULL;
 $sprache = $_POST['sprache'] ?? NULL;
 $dschutz = $_POST['dschutz'] ?? NULL;
 
-if (empty($vorname)) {
-    $fehler = "Vorname muss mindestens 1 Zeichen enthalten";
-}
-if (empty($nachname)) {
-    $fehler = "Nachname muss mindestens 1 Zeichen enthalten";
+if (empty($name)) {
+    $fehler = "Name muss mindestens 1 Zeichen enthalten";
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
