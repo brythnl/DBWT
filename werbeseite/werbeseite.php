@@ -1,5 +1,6 @@
 <?php
-    include('gerichtdaten.php');
+    // include('./gerichtdaten.php');
+    include ('./connectToDB.php');
 ?>
 
 <!DOCTYPE html>
@@ -47,15 +48,20 @@
 
         <section id="speisen">
             <h2>Köstlichkeiten, die Sie erwarten</h2>
-            <?php include ('./getGericht.php'); ?>
+            <?php include ('./accessGericht.php'); ?>
         </section>
 
+        <?php 
+        include('./accessNewsletter.php'); 
+        include ('./accessBesucher.php');
+        ?>
+        
         <section id="zahlen">
             <h2>E-Mensa im Zahlen</h2>
             <ul id="zahlen-list">
-                <li>x<span>Besuche</span></li>
-                <li>y<span>Anmeldungen zum Newsletter</span></li>
-                <li>z<span>Speisen</span></li>
+                <li><?php echo $besucherAnzahl; ?><span>Besuche</span></li>
+                <li><?php echo (floor($lineCount/4)); ?><span>Anmeldungen zum Newsletter</span></li>
+                <li><?php echo $gerichtAnzahl; ?><span>Speisen</span></li>
             </ul>
         </section>
 
