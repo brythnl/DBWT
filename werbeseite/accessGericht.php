@@ -1,17 +1,6 @@
-<?php 
+<?php
 
-$link = mysqli_connect(
-    "127.0.0.1",
-    "root",
-    "9jan2002",
-    "emensawerbeseite",
-    );
-
-if (!$link) {
-    echo "Verbindung fehlgeschlagen: ", mysqli_connect_error();
-    exit();
-}
-
+// Gerichte aus Datenbank laden
 $gerichtsql = "SELECT id, name, preis_intern, preis_extern FROM gericht ORDER BY name ASC LIMIT 5";
 $gerichtresult = mysqli_query($link, $gerichtsql);
 $gerichtallergensql = "SELECT code, gericht_id FROM gericht_hat_allergen";
@@ -19,7 +8,9 @@ $gerichtallergenresult = mysqli_query($link, $gerichtallergensql);
 $allergensql = "SELECT code, name, typ FROM allergen";
 $allergenresult = mysqli_query($link, $allergensql);
 
+$gerichtAnzahl = 0;
 $usedAllergenCode = [];
+
 ?>
 
 <table>
@@ -47,8 +38,13 @@ $usedAllergenCode = [];
         mysqli_data_seek($gerichtallergenresult, 0); // Set result pointer back to starting row
         echo '</td>'; 
     echo '</tr>';
+    $gerichtAnzahl++; // Gerichtsanzahl inkrementieren   
     } ?>
 </table>
+
+<br>
+
+
 
 <h3>Verwendete Allergene</h3>
 <ol>
@@ -63,13 +59,4 @@ $usedAllergenCode = [];
 
 ?>
 </ol>
-
-
-
-
-
-
-
-
-
 
