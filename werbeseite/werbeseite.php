@@ -50,7 +50,7 @@
             <h2>Köstlichkeiten, die Sie erwarten</h2>
             <?php include ('./accessGericht.php'); ?>
         </section>
-
+        
         <?php 
         include('./accessNewsletter.php'); 
         include ('./accessBesucher.php');
@@ -60,6 +60,7 @@
             <h2>E-Mensa im Zahlen</h2>
             <ul id="zahlen-list">
                 <li><?php echo $besucherAnzahl; ?><span>Besuche</span></li>
+                <!-- Dividiert, weil ein Datensatz in formdata.txt ist 4 Zeilen -->
                 <li><?php echo (floor($lineCount/4)); ?><span>Anmeldungen zum Newsletter</span></li>
                 <li><?php echo $gerichtAnzahl; ?><span>Speisen</span></li>
             </ul>
