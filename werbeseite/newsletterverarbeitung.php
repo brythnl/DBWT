@@ -1,5 +1,4 @@
 <?php
-
 function strpos_array($haystack, $needle_array) {
     foreach ($needle_array as $needle) {
         if (strpos($haystack, $needle)) {
@@ -46,7 +45,6 @@ if ($fehler) {
         $line = "$key;$value\n";
         fwrite($file, $line);
     }
-    fwrite($file, "\n\n");
 
     fclose($file);
 }
