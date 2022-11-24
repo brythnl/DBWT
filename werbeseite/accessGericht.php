@@ -58,7 +58,7 @@ $usedAllergenCode = [];
         while ($allergenrow = mysqli_fetch_assoc($allergenresult)) { // über Allergene-Datenbanktabelle (mit Name) iterieren
         foreach ($usedAllergenCode as $code) { // über verwendete Allergene-Array iterieren
             if ($code == $allergenrow['code']) { // falls die aktuelle Codes von Array & DB-Tabelle gleich, 
-                echo '<li>' . utf8_encode($allergenrow['name']) . '</li>'; // dann der Allergen-Name als Listmember gemacht
+                echo '<li>' . utf8_encode($allergenrow['name']) . ' - ' . $allergenrow['code'] . '</li>'; // dann der Allergen-Name als Listmember gemacht
             }                
         }
     }
