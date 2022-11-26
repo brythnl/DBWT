@@ -41,6 +41,11 @@
             <?php include ('./accessGericht.php'); ?>
         </section>
         
+        <section id="wunsch">
+            <h2>Welches Essen wollen Sie hier bei uns haben?</h2>
+            <?php include ('./wunschgericht.php'); ?>
+        </section>
+           
         <?php 
         include('./accessNewsletter.php'); 
         include ('./accessBesucher.php');
