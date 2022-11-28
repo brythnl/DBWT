@@ -13,3 +13,16 @@ function db_kategorie_select_all() {
     mysqli_close($link);
     return $data;
 }
+
+function db_kategorie_select_name_asc() {
+    $link = connectdb();
+
+    $sql = "SELECT name FROM kategorie ORDER BY name ASC";
+    $result = mysqli_query($link, $sql);
+
+    $data = mysqli_fetch_row($result);
+
+    mysqli_close($link);
+    return $data;
+}
+?>
