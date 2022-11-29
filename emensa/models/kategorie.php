@@ -20,7 +20,7 @@ function db_kategorie_select_name_asc() {
     $sql = "SELECT name FROM kategorie ORDER BY name ASC";
     $result = mysqli_query($link, $sql);
 
-    $data = mysqli_fetch_row($result);
+    $data = mysqli_fetch_all($result, MYSQLI_BOTH);
 
     mysqli_close($link);
     return $data;
