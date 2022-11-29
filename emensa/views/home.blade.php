@@ -37,7 +37,7 @@
             </tr>
             @foreach ($gerichte as $gericht) 
                 <tr>
-                    <td>{{ $gericht['name'] }}</td>
+                    <td>{{ utf8_encode($gericht['name']) }}</td>
                     <td>{{ $gericht['preis_intern'] }}</td>
                     <td>{{ $gericht['preis_extern'] }}</td>
                 </tr>
