@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/kategorie.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/../models/gericht.php');
 
 class ExampleController
 {
@@ -7,7 +8,7 @@ class ExampleController
     public function m4_7a_queryparameter(RequestData $rd) {
         return view('examples.m4_7a_queryparameter', 
            array( 
-            'request'=>$rd,
+            'query_param'=>$rd->query['name'],
             'url' => 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}",
         ));
     }
@@ -22,10 +23,20 @@ class ExampleController
         ));
     }
 
-    public function m4_7c_gericht(RequestData $rd) {
-        return view('examples.m4_7c_gericht', array(
+    public function m4_7c_gerichte(RequestData $rd) {
+        $names_prices = db_gericht_select_namedesc_inpreis_over2();
+        return view('examples.m4_7c_gerichte', array(
             'request'=>$rd,
             'url' => 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}",
+            'names_prices'=>$names_prices
         ));
+    }
+
+    public function m4_7d_page_1(RequestData $rd) {
+        
+    }
+
+    public function m4_7d_page_2(RequestData $rd) {
+    
     }
 }
