@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>E-Mensa</title>
-        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/appStyles.css">
     </head>
     <body>
         <header>
