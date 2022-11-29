@@ -25,3 +25,15 @@ function db_gericht_select_all() {
     }
 
 }
+
+function db_gericht_select_namedesc_inpreis_over2() {
+    $link = connectdb();
+
+    $sql = "SELECT name, preis_intern FROM gericht WHERE preis_intern > 2 ORDER BY name DESC ";
+    $result = mysqli_query($link, $sql);
+
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    mysqli_close($link);
+    return $data;
+}
