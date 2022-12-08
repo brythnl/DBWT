@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.9.3-MariaDB, for Linux (x86_64)
+-- MariaDB dump 10.19  Distrib 10.9.4-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: emensawerbeseite
 -- ------------------------------------------------------
--- Server version	10.9.3-MariaDB
+-- Server version	10.9.4-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `allergen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `allergen` (
-  `code` char(4) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Offizieller Abkürzungsbuchstabe für das Allergen.',
-  `name` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name des Allergens, wie "Glutenhaltigens Getreide"',
-  `typ` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Gibt den Typ an. Standard: "allergen"',
+  `code` char(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Offizieller Abkürzungsbuchstabe für das Allergen.',
+  `name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name des Allergens, wie "Glutenhaltigens Getreide"',
+  `typ` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Gibt den Typ an. Standard: "allergen"',
   PRIMARY KEY (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,6 +62,39 @@ INSERT INTO `allergen` VALUES
 UNLOCK TABLES;
 
 --
+-- Table structure for table `benutzer`
+--
+
+DROP TABLE IF EXISTS `benutzer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `benutzer` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'Eindeutige ID, Auto-Inkrement',
+  `NAME` varchar(200) NOT NULL COMMENT 'Name, der auch auf der Oberfläche dargestellt wird',
+  `email` varchar(100) NOT NULL COMMENT 'Eindeutige E-Mail der Benutzer:in. Teil der Anmeldung',
+  `passwort` varchar(200) NOT NULL COMMENT 'Speicherung des Passwort-Hashs mit SHA-1',
+  `ADMIN` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Markierung, ob es sich um einen Administrator handelt\r\noder nicht. Standard: false',
+  `anzahlfehler` int(11) NOT NULL DEFAULT 0 COMMENT 'Zähler, wie oft hintereinander eine Anmeldung\r\nerfolglos durchgeführt wurde. Standard: 0',
+  `anzahlanmeldungen` int(11) NOT NULL COMMENT 'Zähler, wie oft eine Anmeldung insgesamt erfolgreich\r\ndurchgeführt wurde',
+  `letzteanmeldung` datetime DEFAULT NULL COMMENT 'Zeitpunkt, an dem sich der/die Benutzer:in zuletzt\r\nerfolgreich angemeldet hat',
+  `letzterfehler` datetime DEFAULT NULL COMMENT 'Zeitpunkt, an dem sich der/die Benutzer:in zuletzt\r\nerfolglos angemeldet hat',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `benutzer`
+--
+
+LOCK TABLES `benutzer` WRITE;
+/*!40000 ALTER TABLE `benutzer` DISABLE KEYS */;
+INSERT INTO `benutzer` VALUES
+(1,'Bryan','admin@emensa.example','password',1,0,0,NULL,NULL);
+/*!40000 ALTER TABLE `benutzer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `besucher`
 --
 
@@ -70,7 +103,7 @@ DROP TABLE IF EXISTS `besucher`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `besucher` (
   `anzahl` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,8 +126,8 @@ DROP TABLE IF EXISTS `gericht`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `gericht` (
   `id` bigint(20) NOT NULL COMMENT 'Primärschlüssel',
-  `name` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name des Gerichts. Ein Name ist eindeutig.',
-  `beschreibung` varchar(800) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Beschreibung des Gerichts',
+  `name` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name des Gerichts. Ein Name ist eindeutig.',
+  `beschreibung` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Beschreibung des Gerichts',
   `erfasst_am` date NOT NULL COMMENT 'Zeitpunkt der ersten Erfassung des Gerichts.',
   `vegetarisch` tinyint(1) NOT NULL COMMENT 'Markierung, ob das Gericht vegetarisch ist. Standard: Nein.',
   `vegan` tinyint(1) NOT NULL COMMENT 'Markierung, ob das Gericht vegan ist. Standard: Nein.',
@@ -102,8 +135,9 @@ CREATE TABLE `gericht` (
   `preis_extern` double NOT NULL COMMENT 'Preis für externe Personen (wie Gastdozent:innen).',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
+  KEY `name_asc` (`name`),
   CONSTRAINT `preis_check` CHECK (`preis_intern` <= `preis_extern`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,13 +178,15 @@ DROP TABLE IF EXISTS `gericht_hat_allergen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `gericht_hat_allergen` (
-  `code` char(4) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Referenz auf Allergen',
+  `code` char(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Referenz auf Allergen',
   `gericht_id` bigint(20) NOT NULL COMMENT 'Referenz auf das Gericht',
   KEY `gericht_id` (`gericht_id`),
   KEY `code` (`code`),
   CONSTRAINT `gericht_hat_allergen_ibfk_1` FOREIGN KEY (`gericht_id`) REFERENCES `gericht` (`id`),
-  CONSTRAINT `gericht_hat_allergen_ibfk_2` FOREIGN KEY (`code`) REFERENCES `allergen` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `gericht_hat_allergen_ibfk_2` FOREIGN KEY (`code`) REFERENCES `allergen` (`code`),
+  CONSTRAINT `gericht_hat_allergen_ibfk_3` FOREIGN KEY (`gericht_id`) REFERENCES `gericht` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `gericht_hat_allergen_ibfk_4` FOREIGN KEY (`code`) REFERENCES `allergen` (`code`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,11 +240,13 @@ DROP TABLE IF EXISTS `gericht_hat_kategorie`;
 CREATE TABLE `gericht_hat_kategorie` (
   `gericht_id` bigint(20) NOT NULL COMMENT 'Referenz auf Gericht',
   `kategorie_id` bigint(20) NOT NULL COMMENT 'Referenz auf Kategorie',
-  KEY `gericht_id` (`gericht_id`),
-  KEY `kategorie_id` (`kategorie_id`),
+  PRIMARY KEY (`gericht_id`,`kategorie_id`),
+  UNIQUE KEY `uq_gericht_hat_kategorie` (`gericht_id`,`kategorie_id`),
+  KEY `gericht_hat_kategorie_ibfk_2` (`kategorie_id`),
   CONSTRAINT `gericht_hat_kategorie_ibfk_1` FOREIGN KEY (`gericht_id`) REFERENCES `gericht` (`id`),
-  CONSTRAINT `gericht_hat_kategorie_ibfk_2` FOREIGN KEY (`kategorie_id`) REFERENCES `kategorie` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `gericht_hat_kategorie_ibfk_2` FOREIGN KEY (`kategorie_id`) REFERENCES `kategorie` (`id`),
+  CONSTRAINT `gericht_hat_kategorie_ibfk_3` FOREIGN KEY (`gericht_id`) REFERENCES `gericht` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,10 +264,10 @@ INSERT INTO `gericht_hat_kategorie` VALUES
 (7,3),
 (9,3),
 (16,4),
-(17,4),
-(18,4),
 (16,5),
+(17,4),
 (17,5),
+(18,4),
 (18,5),
 (21,3);
 /*!40000 ALTER TABLE `gericht_hat_kategorie` ENABLE KEYS */;
@@ -244,11 +282,11 @@ DROP TABLE IF EXISTS `kategorie`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `kategorie` (
   `id` bigint(20) NOT NULL COMMENT 'Primärschlüssel',
-  `name` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name der Kategorie, z.B. "Hauptgerichtz.B. „Hauptgericht“, „Vorspeise“, „Salat“, "Sauce" oder "Käsegericht".',
+  `name` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name der Kategorie, z.B. "Hauptgerichtz.B. „Hauptgericht“, „Vorspeise“, „Salat“, "Sauce" oder "Käsegericht".',
   `eltern_id` bigint(20) DEFAULT NULL COMMENT 'Referenz auf eine (Eltern-)Kategorie. Es soll eine Baumstruktur\ninnerhalb der Kategorien abgebildet werden. Zum Beispiel\nenthält die Kategorie „Hauptgericht“ alle Kategorien, denen\nGerichte zugeordnet sind, die als Hauptgang vorgesehen sind.',
-  `bildname` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Name der Bilddatei, die eine Darstellung der Kategorie enthält.',
+  `bildname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Name der Bilddatei, die eine Darstellung der Kategorie enthält.',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,4 +315,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-17 18:43:56
+-- Dump completed on 2022-12-08 14:21:44
