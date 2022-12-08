@@ -6,7 +6,7 @@ class HomeController
 {
     public function index(RequestData $request) {
         $gerichte = db_gericht_select_all();
-        
+        session_start(); // Session-Verwendung einschalten
         return view('home', [
             'rd' => $request,
             'gerichte'=>$gerichte 
@@ -16,4 +16,6 @@ class HomeController
     public function debug(RequestData $request) {
         return view('debug');
     }
+
+    
 }
