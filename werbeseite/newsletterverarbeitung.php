@@ -8,8 +8,13 @@ function strpos_array($haystack, $needle_array) {
     return 0;
 } 
 
+$name = str_replace('\'',"",trim($_POST['name']??NULL));
+$email = str_replace('\'',"",trim($_POST['email']??NULL));
+
+/*
 $name = trim($_POST['name'] ?? NULL);
 $email = $_POST['email'] ?? NULL;
+*/
 $sprache = $_POST['sprache'] ?? NULL;
 $dschutz = $_POST['dschutz'] ?? NULL;
 
