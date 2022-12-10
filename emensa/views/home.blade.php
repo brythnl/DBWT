@@ -10,6 +10,7 @@
             <li><a href="#zahlen">Zahlen</a></li>
             <li><a href="#kontakt">Kontakt</a></li>
             <li><a href="#wichtig-fuer-uns">Wichtig für uns</a></li>
+            <li>Angemeldet als {{ $username }}</li>
         </ul>
     </nav>
 @endsection
