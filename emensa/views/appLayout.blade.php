@@ -2,7 +2,7 @@
 <html lang="de">
     <head>
         <meta charset="utf-8">
-        <title>E-Mensa</title>
+        <title>E-Mensa @yield('title')</title>
         <link rel="stylesheet" href="/css/appStyles.css">
     </head>
     <body>
