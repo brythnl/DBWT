@@ -1,4 +1,6 @@
 <?php
+session_start(); // Session-Verwendung einschalten
+
 const VERBOSITY = 0;
 const PUBLIC_DIRNAME = "public";
 const CONFIG_WEBROUTES = "/../config/web.php";
