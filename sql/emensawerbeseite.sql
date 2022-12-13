@@ -90,7 +90,7 @@ CREATE TABLE `benutzer` (
 LOCK TABLES `benutzer` WRITE;
 /*!40000 ALTER TABLE `benutzer` DISABLE KEYS */;
 INSERT INTO `benutzer` VALUES
-(1,'Bryan','admin@emensa.example','password',1,0,0,NULL,NULL);
+(1,'Bryan','admin@emensa.example','59b3e8d637cf97edbe2384cf59cb7453dfe30789',1,0,0,NULL,NULL);
 /*!40000 ALTER TABLE `benutzer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `besucher` (
 LOCK TABLES `besucher` WRITE;
 /*!40000 ALTER TABLE `besucher` DISABLE KEYS */;
 INSERT INTO `besucher` VALUES
-(15);
+(24);
 /*!40000 ALTER TABLE `besucher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,6 +133,7 @@ CREATE TABLE `gericht` (
   `vegan` tinyint(1) NOT NULL COMMENT 'Markierung, ob das Gericht vegan ist. Standard: Nein.',
   `preis_intern` double NOT NULL COMMENT 'Preis für interne Personen (wie Studierende). Es gilt immer preis_intern > 0.',
   `preis_extern` double NOT NULL COMMENT 'Preis für externe Personen (wie Gastdozent:innen).',
+  `bildname` varchar(200) DEFAULT NULL COMMENT 'Name der BIlddatei, die das Gericht darstellt. Standard: null.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `name_asc` (`name`),
@@ -147,26 +148,26 @@ CREATE TABLE `gericht` (
 LOCK TABLES `gericht` WRITE;
 /*!40000 ALTER TABLE `gericht` DISABLE KEYS */;
 INSERT INTO `gericht` VALUES
-(1,'Bratkartoffeln mit Speck und Zwiebeln','Kartoffeln mit Zwiebeln und gut Speck','2020-08-25',0,0,2.3,4),
-(3,'Bratkartoffeln mit Zwiebeln','Kartoffeln mit Zwiebeln und ohne Speck','2020-08-25',1,1,2.3,4),
-(4,'Grilltofu','Fein gewürzt und mariniert','2020-08-25',1,1,2.5,4.5),
-(5,'Lasagne','Klassisch mit Bolognesesoße und Creme Fraiche','2020-08-24',0,0,2.5,4.5),
-(6,'Lasagne vegetarisch','Klassisch mit Sojagranulatsoße und Creme Fraiche','2020-08-24',1,0,2.5,4.5),
-(7,'Hackbraten','Nicht nur für Hacker','2020-08-25',0,0,2.5,4),
-(8,'Gemüsepfanne','Gesundes aus der Region, deftig angebraten','2020-08-25',1,1,2.3,4),
-(9,'Hühnersuppe','Suppenhuhn trifft Petersilie','2020-08-25',0,0,2,3.5),
-(10,'Forellenfilet','mit Kartoffeln und Dilldip','2020-08-22',0,0,3.8,5),
-(11,'Kartoffel-Lauch-Suppe','der klassische Bauchwärmer mit frischen Kräutern','2020-08-22',1,0,2,3),
-(12,'Kassler mit Rosmarinkartoffeln','dazu Salat und Senf','2020-08-23',0,0,3.8,5.2),
-(13,'Drei Reibekuchen mit Apfelmus','grob geriebene Kartoffeln aus der Region','2020-08-23',1,0,2.5,4.5),
-(14,'Pilzpfanne','die legendäre Pfanne aus Pilzen der Saison','2020-08-23',1,0,3,5),
-(15,'Pilzpfanne vegan','die legendäre Pfanne aus Pilzen der Saison ohne Käse','2020-08-24',1,1,3,5),
-(16,'Käsebrötchen','schmeckt vor und nach dem Essen','2020-08-24',1,0,1,1.5),
-(17,'Schinkenbrötchen','schmeckt auch ohne Hunger','2020-08-25',0,0,1.25,1.75),
-(18,'Tomatenbrötchen','mit Schnittlauch und Zwiebeln','2020-08-25',1,1,1,1.5),
-(19,'Mousse au Chocolat','sahnige schweizer Schokolade rundet jedes Essen ab','2020-08-26',1,0,1.25,1.75),
-(20,'Suppenkreation á la Chef','was verschafft werden muss, gut und günstig','2020-08-26',0,0,0.5,0.9),
-(21,'Currywurst mit Pommes','Bratwurst mit Currysauce und gefrittierte Pommes','2022-11-11',0,0,2.8,5);
+(1,'Bratkartoffeln mit Speck und Zwiebeln','Kartoffeln mit Zwiebeln und gut Speck','2020-08-25',0,0,2.3,4,'01_bratkartoffel.jpg'),
+(3,'Bratkartoffeln mit Zwiebeln','Kartoffeln mit Zwiebeln und ohne Speck','2020-08-25',1,1,2.3,4,'03_bratkartoffel.jpg'),
+(4,'Grilltofu','Fein gewürzt und mariniert','2020-08-25',1,1,2.5,4.5,'04_tofu.jpg'),
+(5,'Lasagne','Klassisch mit Bolognesesoße und Creme Fraiche','2020-08-24',0,0,2.5,4.5,NULL),
+(6,'Lasagne vegetarisch','Klassisch mit Sojagranulatsoße und Creme Fraiche','2020-08-24',1,0,2.5,4.5,'06_lasagne.jpg'),
+(7,'Hackbraten','Nicht nur für Hacker','2020-08-25',0,0,2.5,4,NULL),
+(8,'Gemüsepfanne','Gesundes aus der Region, deftig angebraten','2020-08-25',1,1,2.3,4,NULL),
+(9,'Hühnersuppe','Suppenhuhn trifft Petersilie','2020-08-25',0,0,2,3.5,'09_suppe.jpg'),
+(10,'Forellenfilet','mit Kartoffeln und Dilldip','2020-08-22',0,0,3.8,5,'10_forelle.jpg'),
+(11,'Kartoffel-Lauch-Suppe','der klassische Bauchwärmer mit frischen Kräutern','2020-08-22',1,0,2,3,'11_soup.jpg'),
+(12,'Kassler mit Rosmarinkartoffeln','dazu Salat und Senf','2020-08-23',0,0,3.8,5.2,'12_kassler.jpg'),
+(13,'Drei Reibekuchen mit Apfelmus','grob geriebene Kartoffeln aus der Region','2020-08-23',1,0,2.5,4.5,'13_reibekuchen.jpg'),
+(14,'Pilzpfanne','die legendäre Pfanne aus Pilzen der Saison','2020-08-23',1,0,3,5,NULL),
+(15,'Pilzpfanne vegan','die legendäre Pfanne aus Pilzen der Saison ohne Käse','2020-08-24',1,1,3,5,'15_pilze.jpg'),
+(16,'Käsebrötchen','schmeckt vor und nach dem Essen','2020-08-24',1,0,1,1.5,NULL),
+(17,'Schinkenbrötchen','schmeckt auch ohne Hunger','2020-08-25',0,0,1.25,1.75,'17_broetchen.jpg'),
+(18,'Tomatenbrötchen','mit Schnittlauch und Zwiebeln','2020-08-25',1,1,1,1.5,NULL),
+(19,'Mousse au Chocolat','sahnige schweizer Schokolade rundet jedes Essen ab','2020-08-26',1,0,1.25,1.75,'19_mousse.jpg'),
+(20,'Suppenkreation á la Chef','was verschafft werden muss, gut und günstig','2020-08-26',0,0,0.5,0.9,'20_suppe.jpg'),
+(21,'Currywurst mit Pommes','Bratwurst mit Currysauce und gefrittierte Pommes','2022-11-11',0,0,2.8,5,NULL);
 /*!40000 ALTER TABLE `gericht` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,6 +306,41 @@ INSERT INTO `kategorie` VALUES
 (7,'Erstiewoche',1,'kat_erties.jpg');
 /*!40000 ALTER TABLE `kategorie` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `wunschgericht`
+--
+
+DROP TABLE IF EXISTS `wunschgericht`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wunschgericht` (
+  `NAME` varchar(200) NOT NULL,
+  `beschreibung` varchar(800) NOT NULL,
+  `erstellungsdatum` date NOT NULL,
+  `nummer` bigint(20) NOT NULL AUTO_INCREMENT,
+  `erstellername` varchar(80) NOT NULL DEFAULT 'anonym',
+  `ersteller_email` varchar(200) NOT NULL,
+  PRIMARY KEY (`nummer`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `wunschgericht`
+--
+
+LOCK TABLES `wunschgericht` WRITE;
+/*!40000 ALTER TABLE `wunschgericht` DISABLE KEYS */;
+INSERT INTO `wunschgericht` VALUES
+('Gericht1','Beschreibung1','2022-01-01',4,'Name1','email1@example.com'),
+('Gericht2','Beschreibung2','2022-01-02',5,'Name2','email2@example.com'),
+('Gericht3','Beschreibung3','2022-01-03',6,'Name3','email3@example.com'),
+('Gericht4','Beschreibung4','2022-01-04',7,'Name4','email4@example.com'),
+('Gericht5','Beschreibung5','2022-01-05',8,'Name5','email5@example.com'),
+('','','1970-01-01',9,'',''),
+('Bryan','Gebratener Reis','2022-01-03',10,'Name1','bryanathanaelj@gmail.com');
+/*!40000 ALTER TABLE `wunschgericht` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -315,4 +351,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-08 14:21:44
+-- Dump completed on 2022-12-13 17:50:01
