@@ -41,6 +41,13 @@
                     <td>{{ utf8_encode($gericht['name']) }}</td>
                     <td>{{ $gericht['preis_intern'] }}</td>
                     <td>{{ $gericht['preis_extern'] }}</td>
+                    <td><img 
+                        @if ($gericht['bildname'] == NULL) 
+                            src="/img/gerichte/00_image_missing.jpg"
+                        @else
+                            src={{ "/img/gerichte/" . $gericht['bildname'] }}
+                        @endif
+                    ></td>
                 </tr>
             @endforeach
         </table>
