@@ -1,7 +1,8 @@
 <?php 
 
-function hashPassword($password, $salt) {
-    return sha1($salt . $password);
+function hashPassword($password) {
+    return sha1('salt' . $password);
 }
 
+echo hashPassword('password');
 ?>
