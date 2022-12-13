@@ -41,7 +41,7 @@
                     <td>{{ utf8_encode($gericht['name']) }}</td>
                     <td>{{ $gericht['preis_intern'] }}</td>
                     <td>{{ $gericht['preis_extern'] }}</td>
-                    <td><img 
+                    <td><img class="gericht-img"
                         @if ($gericht['bildname'] == NULL) 
                             src="/img/gerichte/00_image_missing.jpg"
                         @else
