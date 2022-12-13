@@ -77,30 +77,12 @@ li > a:hover {
 }
 
 /***** Gerichte *****/
-.gericht-img {
-    display: inline-block;
-    width: 700px;
-    margin: 20px 0 50px 0;
-}
-
-
-/***** Essen-Tabelle *****/
 th, td {
     border: 2px solid black;
 }
 
-/***** Zahlen *****/
-#zahlen-list {
-    text-align: center;
-    display: grid;
-    grid-auto-flow: column;
-    list-style: none;
-    gap: 12px;
-}
-
-span {
-    margin-left: 12px;
-    font-weight: 900;
+.gericht-img {
+    width: 150px;
 }
 
 /***** Kontaktformular *****/
