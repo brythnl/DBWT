@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/gericht.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/../models/benutzer.php');
+
 
 /* Datei: controllers/HomeController.php */
 class HomeController
