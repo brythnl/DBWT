@@ -1,5 +1,7 @@
 {
     "require": {
-        "eftec/bladeone": "^4.7"
+        "eftec/bladeone": "^4.7",
+        "ext-mysqli": "*",
+        "monolog/monolog": "^3.2"
     }
 }
