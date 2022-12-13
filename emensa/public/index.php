@@ -20,6 +20,9 @@ try {
     echo "<code>DOCUMENT_ROOT</code><br><pre>{$_SERVER['DOCUMENT_ROOT']}</pre><code>Error</code><br><pre>" . $ex->getMessage() . "</pre>";
 }
 
+
+
+
 // $path_to_config_webroutes = realpath($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . CONFIG_WEBROUTES);
 // $path_to_config_db = realpath($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . CONFIG_DB);
 
@@ -241,6 +244,15 @@ class FrontController
         }
         return glob($path . '*Controller.php');
     }
+}
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+function logger() : Logger {
+  $logger = new Logger('emensa');
+  $logger->pushHandler(new StreamHandler(__DIR__ . "/../storage/logs/app.log"));
+  return $logger; 
 }
 
 function connectdb()
