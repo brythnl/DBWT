@@ -1,7 +1,8 @@
 @extends('appLayout')
 
 @section('content')
-    <form method="get">
+    <p>{{ $msg }}</p>
+    <form method="post" action="/anmeldung_verifizieren">
         <label for="username">Enter a username:</label>
         <input type="text" id="username" name="username">
         <label for="password">Enter a password:</label>
