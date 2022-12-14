@@ -11,6 +11,11 @@
             <li><a href="#kontakt">Kontakt</a></li>
             <li><a href="#wichtig-fuer-uns">Wichtig für uns</a></li>
             <li>Angemeldet als: {{ $_SESSION['username'] }}</li>
+            @if ($_SESSION['login_ok'] == true)
+              <li><a href="/abmeldung">Abmelden</a></li>
+            @else
+              <li><a href="/anmeldung">Anmelden</a></li>
+            @endif
         </ul>
     </nav>
 @endsection
