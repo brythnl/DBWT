@@ -23,4 +23,5 @@ return array(
     // Log-in route
     '/anmeldung' => 'AuthController@index',
     '/anmeldung_verifizieren' => 'AuthController@check',
+    '/abmeldung' => 'AuthController@logout',
 );
