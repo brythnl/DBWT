@@ -43,6 +43,15 @@ class AuthController {
             header('Location: /anmeldung');
         }
     }
+
+    public function logout() {
+        $logger = logger();
+        $logger->info('Erfolgreich abgemeldet!');
+
+        $_SESSION['login_ok'] = false;
+        $_SESSION['username'] = '';
+        header('Location: /');
+    }
 }
 
 
