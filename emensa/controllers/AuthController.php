@@ -31,8 +31,11 @@ class AuthController {
         if ($success) {
             $logger->info('Erfolgreich angemeldet!');
             $_SESSION['login_ok'] = true;
+            successfulLoginUpdate($id);
+            /*
             incLogin($username, $id);
             setLoginTime($username, false);
+            */
             $_SESSION['username'] = $username;
             header('Location: /');
         } else {
