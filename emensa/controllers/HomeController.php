@@ -4,8 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/../models/benutzer.php');
 
 
 /* Datei: controllers/HomeController.php */
-class HomeController
-{
+class HomeController {
     public function index(RequestData $request) {
       $gerichte = db_gericht_select_all();
       $logger = logger();
