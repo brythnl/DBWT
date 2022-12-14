@@ -1,6 +1,20 @@
 <?php
 
-function incLogin($username, $id) {
+function successfulLoginUpdate($id) {
+    date_default_timezone_set('Europe/Berlin');
+    $date = date("Y-m-d H:i:s"); // get current time
+
+    $link = connectdb();
+    
+    mysqli_begin_transaction($link);
+    mysqli_query($link, "CALL Anmeldungszahler($id)");
+    mysqli_query($link, "UPDATE benutzer SET letzteanmeldung = '$date' WHERE id = $id");
+    mysqli_commit($link);
+
+    mysqli_close($link);
+}
+
+function incLogin(/*$username,*/$id) {
     $link = connectdb();
     
     $sql = mysqli_stmt_init($link);
