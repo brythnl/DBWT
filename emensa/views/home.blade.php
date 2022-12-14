@@ -81,9 +81,6 @@
 @section("cssextra")
     <link rel="stylesheet" href="/css/default.min.css">
     <style>
-        body > div {
-            background-color: {{$rd->query['bgcolor'] ?? 'ffffff'}}
-        }
     </style>
 @endsection
 
