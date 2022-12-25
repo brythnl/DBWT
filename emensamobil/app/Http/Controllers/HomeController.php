@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-
-class HomeController extends BaseController
+class HomeController extends Controller 
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function index(RequestData $request) {
+      $gerichte = db_gericht_select_all();
+      $logger = logger();
+      $logger->info('Hauptseite aufgeruft!');
+        return view('home', [
+            'rd' => $request,
+            'gerichte'=>$gerichte 
+        ]);
+    }
 }
