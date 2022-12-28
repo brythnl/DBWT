@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    text-align: left;
+    margin: 0 220px;
+}
+
+h2 {
+    margin-top: 50px;
+    margin-bottom: 36px;
+    text-decoration: underline;
+}
+
+/***** Header *****/
+header {
+    border-bottom: 2px solid black;
+    margin-bottom: 36px;
+}
+
+#logo {
+    width: 60px;
+    position: relative;
+    left: 20px;
+}
+
+h1 {
+    padding: 20px;
+    margin-left: 16px;
+}
+
+nav {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    position: absolute;
+    right: 20px;
+}
+
+.navbar > li {
+    padding: 8px;
+}
+
+li > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li > a:hover {
+    text-decoration: underline;
+}
+
+/***** Mensa Bild *****/
+#img-container {
+    min-width: 400px;
+}
+
+#mensa {
+    width: 100%;
+    height: auto;
+    border-radius: 70px;
+    border: 10px solid black;
+}
+
+/***** Artikel *****/
+#ankundigungsbox {
+    border: 2px solid black;
+    padding: 16px 8px;
+}
+
+/***** Gerichte *****/
+th,
+td {
+    border: 2px solid black;
+}
+
+.gericht-img {
+    width: 150px;
+}
+
+/***** Kontaktformular *****/
+#kontakt > div {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+#upper > label {
+    padding-right: 28px;
+}
+
+#name {
+    width: 108px;
+}
+
+#email {
+    width: 120px;
+}
+
+#middle {
+    margin-bottom: 12px;
+}
+
+#submit {
+    margin-left: 20px;
+    width: 220px;
+}
+
+/***** Wichtig *****/
+#wichtig {
+    text-align: center;
+}
+
+#wichtig-list {
+    display: inline-block;
+    text-align: left;
+    list-style-position: inside;
+}
+
+/***** Closing *****/
+footer {
+    text-align: center;
+}
+
+#closing {
+    text-align: center;
+}
+
+#closing-list {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    list-style: none;
+    padding: 20px 0px;
+    border-top: 2px solid black;
+}
+
+#closing-list > li:not(:last-child) {
+    padding-right: 20px;
+    border-right: 2px solid black;
+}
+
+#closing-list > li:not(:first-child) {
+    padding-left: 20px;
+}
