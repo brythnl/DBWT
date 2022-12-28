@@ -5,4 +5,6 @@ CREATE TABLE bewertung (
 	zeitpunkt DATETIME NOT NULL DEFAULT NOW(),
 	FOREIGN KEY (gericht_id) REFERENCES gericht(id)
 );
-	
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT ON emensawerbeseite.* TO 'admin'@'localhost';
