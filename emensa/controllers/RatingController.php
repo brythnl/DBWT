@@ -38,4 +38,10 @@ class RatingController {
       ]);
     }
   }
+
+  public function delete(RequestData $request) {
+    delete_user_rating($request->query['gerichtid'], $request->query['autor']);
+
+    header('Location: /meinebewertung');
+  }
 }
