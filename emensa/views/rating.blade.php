@@ -1,7 +1,7 @@
 @extends('appLayout')
 
 @section('content')
-  <h2>{{ $gericht['name'] }}</h2>
+  <h2>{{ utf8_encode($gericht['name']) }}</h2>
 
   <td><img class="gericht-img"
     @if ($gericht['bildname'] == NULL) 
@@ -24,5 +24,23 @@
     <input type="submit" value="Submit">
   </form>
 
+  <section id="bewertungen">
+    <h2>Bewertungen</h2>
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Bemerkung</th>
+          <th>Bewertung</th>
+        </tr>
+        @foreach ($ratings as $rating) 
+          <tr>
+            <td>{{ utf8_encode($rating['NAME']) }}</td>
+            <td>{{ utf8_encode($rating['bemerkung']) }}</td>
+            <td>{{ $rating['sterne'] }}</td>
+          </tr>
+        @endforeach
+    </table>
+  </section>
+ 
   <a href="/">Hauptseite</a>
 @endsection
