@@ -3,8 +3,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/../models/benutzer.php');
 
 class AuthController {
     public function index(RequestData $rd) {
-        $msg = $_SESSION['login_result_message'] ?? NULL;
-        return view('login', ['msg' => $msg]);
+      $msg = $_SESSION['login_result_message'] ?? NULL;
+      $gerichtid = $rd->query['gerichtid'];
+      return view('login', [
+        'msg' => $msg,
+        'gerichtid' => $gerichtid
+      ]);
     }
 
     public function check(RequestData $rd) {
@@ -34,7 +38,7 @@ class AuthController {
             $_SESSION['username'] = $username;
             
             if ($_SESSION['access_rating']) {
-              header('Location: /bewertung');
+              header('Location: /bewertung?gerichtid=' . $rd->query['gerichtid']);
             } else {
               header('Location: /');
             }
