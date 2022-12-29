@@ -29,4 +29,5 @@ return array(
   '/bewertung' => 'RatingController@index',
   '/bewertung_speichern' => 'RatingController@save',
   '/meinebewertung' => 'RatingController@userRating',
+  '/bewertung_loeschen' => 'RatingController@delete',
 );
