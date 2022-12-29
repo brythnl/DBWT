@@ -14,7 +14,7 @@
             <td>{{ utf8_encode($rating['NAME']) }}</td>
             <td>{{ utf8_encode($rating['bemerkung']) }}</td>
             <td>{{ $rating['sterne'] }}</td>
-            <td><a href="/bewertung?gerichtid={{ $gericht['id'] }}">Löschen</a></td>
+            <td><a href="/bewertung_loeschen?gerichtid={{ $rating['gericht_id'] }}&autor={{ $rating['autor'] }}">Löschen</a></td>
           </tr>
         @endforeach
     </table>
