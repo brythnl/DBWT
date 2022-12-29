@@ -37,3 +37,15 @@ function db_gericht_select_namedesc_inpreis_over2() {
     mysqli_close($link);
     return $data;
 }
+
+function getNameImg($id) {
+  $link = connectdb();
+
+  $sql = "SELECT name, bildname FROM gericht WHERE id = $id";
+  $result = mysqli_query($link, $sql);
+
+  $data = mysqli_fetch_assoc($result);
+
+  mysqli_close($link);
+  return $data;
+}
