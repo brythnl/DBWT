@@ -14,4 +14,5 @@
     <input type="submit" value="Submit">
   </form>
 
+  <a href="/">Hauptseite</a>
 @endsection
