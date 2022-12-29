@@ -25,8 +25,17 @@ class RatingController {
 
     $bemerkung = $request->getPostData()['bemerkung'];
     $sterne = $request->getPostData()['sterne'];
-    saveData($gerichtid, $bemerkung, $sterne, $gericht['name']);
+    saveData($gerichtid, $bemerkung, $sterne, $gericht['name'], $_SESSION['username']);
 
     header('Location: /bewertung?gerichtid=' . $gerichtid);
+  }
+
+  public function userRating() {
+    if ($_SESSION['login_ok']) {
+      $ratings = get_user_ratings_chronological($_SESSION['username']);
+      return view('userRating', [
+        'ratings'=>$ratings,
+      ]);
+    }
   }
 }
