@@ -3,7 +3,7 @@
 @section('content')
   <form>
     <label for="bemerkung">Bemerkungen:</label>
-    <textarea id="bemerkung" name="bemerkung"></textarea>
+    <textarea id="bemerkung" name="bemerkung" maxlength="800"></textarea>
     <label for="sterne">Sterne:</label>
     <select id="sterne" name="sterne">
       <option value="sehr gut">sehr gut</option>
