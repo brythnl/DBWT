@@ -32,7 +32,12 @@ class AuthController {
             $_SESSION['login_ok'] = true;
             successfulLoginUpdate($id);
             $_SESSION['username'] = $username;
-            header('Location: /');
+            
+            if ($_SESSION['access_rating']) {
+              header('Location: /bewertung');
+            } else {
+              header('Location: /');
+            }
         } else {
             $logger->warning('Bitte die korrekten Anmeldedaten eintragen!');
             $_SESSION['login_result_message'] = 'Falscher Name oder Passwort! Bitte erneut eintragen.';
