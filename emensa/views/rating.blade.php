@@ -1,6 +1,16 @@
 @extends('appLayout')
 
 @section('content')
+  <h2>{{ $gericht['name'] }}</h2>
+
+  <td><img class="gericht-img"
+    @if ($gericht['bildname'] == NULL) 
+      src="/img/gerichte/00_image_missing.jpg"
+    @else
+      src={{ "/img/gerichte/" . $gericht['bildname'] }}
+    @endif
+  ></td>
+
   <form action="/bewertung_speichern?gerichtid={{ $gerichtid }}" method="post">
     <label for="bemerkung">Bemerkungen:</label>
     <textarea id="bemerkung" name="bemerkung" minlength="5" maxlength="800"></textarea>
