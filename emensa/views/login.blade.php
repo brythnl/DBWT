@@ -1,6 +1,9 @@
 @extends('appLayout')
 
 @section('content')
+    @if ($_SESSION['access_rating']) 
+      <p>Nur Benutzer können Bewertungen schreiben!</p>
+    @endif
     <p>{{ $msg }}</p>
     <form method="post" action="/anmeldung_verifizieren">
         <label for="username">Enter a username:</label>
