@@ -41,3 +41,12 @@ function get_user_ratings_chronological($user) {
 
   return $data;
 }
+
+function delete_user_rating($id, $autor) {
+  $link = connectdb();
+
+  $sql = "DELETE FROM bewertung WHERE gericht_id = $id AND autor = '$autor'";
+  mysqli_query($link, $sql);
+
+  mysqli_close($link);
+}
