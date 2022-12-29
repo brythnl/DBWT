@@ -53,6 +53,7 @@
                             src={{ "/img/gerichte/" . $gericht['bildname'] }}
                         @endif
                     ></td>
+                    <td><a href="/bewertung?gerichtid={{ $gericht['id']}}">Bewerten</a></td>
                 </tr>
             @endforeach
         </table>
