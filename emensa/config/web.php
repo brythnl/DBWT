@@ -28,5 +28,5 @@ return array(
   // Rating route
   '/bewertung' => 'RatingController@index',
   '/bewertung_speichern' => 'RatingController@save',
-
+  '/meinebewertung' => 'RatingController@userRating',
 );
