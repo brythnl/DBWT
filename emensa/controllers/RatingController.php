@@ -1,12 +1,17 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/bewertung.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/../models/gericht.php');
 
 class RatingController {
   public function index(RequestData $request) {
     $_SESSION['access_rating'] = true;
     if ($_SESSION['login_ok']) {
       $gerichtid = $request->query['gerichtid'];
-      return view('rating', ['gerichtid'=>$gerichtid]);
+      $gericht = getNameImg($gerichtid);
+      return view('rating', [
+        'gerichtid'=>$gerichtid,
+        'gericht'=>$gericht,
+      ]);
     } else {
       header('Location: /anmeldung');
     }
