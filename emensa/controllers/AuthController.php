@@ -1,6 +1,5 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/benutzer.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/../../beispiele/passwort.php');
 
 class AuthController {
     public function index(RequestData $rd) {
@@ -20,7 +19,7 @@ class AuthController {
         foreach ($logindata as $user) {
           if ($user['email'] == $username) {
             $exist = true;
-            if ($user['passwort'] == hashPassword($password)) {
+            if ($user['passwort'] == sha1('salt' . $password)) {
               $success = true;
               $id = $user['id'];
             }
@@ -32,10 +31,6 @@ class AuthController {
             $logger->info('Erfolgreich angemeldet!');
             $_SESSION['login_ok'] = true;
             successfulLoginUpdate($id);
-            /*
-            incLogin($username, $id);
-            setLoginTime($username, false);
-            */
             $_SESSION['username'] = $username;
             header('Location: /');
         } else {
