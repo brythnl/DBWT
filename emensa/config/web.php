@@ -24,6 +24,9 @@ return array(
   '/anmeldung' => 'AuthController@index',
   '/anmeldung_verifizieren' => 'AuthController@check',
   '/abmeldung' => 'AuthController@logout',
+
+  // Rating route
   '/bewertung' => 'RatingController@index',
+  '/bewertung_speichern' => 'RatingController@save',
 
 );
