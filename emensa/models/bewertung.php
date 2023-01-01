@@ -59,3 +59,12 @@ function set_selection($id) {
     
     mysqli_close($link);
 }
+
+function unset_selection($id) {
+    $link = connectdb();
+
+    $sql = "UPDATE bewertung SET hervorhebung = 0 where gericht_id = $id";
+    mysqli_query($link, $sql);
+    
+    mysqli_close($link);
+}
