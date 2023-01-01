@@ -37,6 +37,9 @@
             <td>{{ utf8_encode($rating['NAME']) }}</td>
             <td>{{ utf8_encode($rating['bemerkung']) }}</td>
             <td>{{ $rating['sterne'] }}</td>
+            @if ($admin)
+                <td><a>Hervorheben</a></td>
+            @endif
           </tr>
         @endforeach
     </table>
