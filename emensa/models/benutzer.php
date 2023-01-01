@@ -59,4 +59,17 @@ function getLoginData() {
     return $data;
 }
 
+function checkAdmin($user) {
+    $link = connectdb();
+    $sql = "SELECT ADMIN FROM benutzer WHERE email = '$user'";
+    $result = mysqli_query($link, $sql);
+
+    mysqli_close($link);
+
+    if (mysqli_fetch_assoc($result)['ADMIN'] == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
 ?>
