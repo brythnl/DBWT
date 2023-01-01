@@ -39,6 +39,7 @@
             <td>{{ $rating['sterne'] }}</td>
             @if ($admin)
                 <td><a href="/hervorheben?gerichtid={{ $rating['gericht_id'] }}">Hervorheben</a></td>
+                <td><a href="/hervorheben_abwaehlen?gerichtid={{ $rating['gericht_id'] }}">Hervorhebung abwählen</a></td>
             @endif
           </tr>
         @endforeach
