@@ -31,4 +31,5 @@ return array(
     '/meinebewertung' => 'RatingController@userRating',
     '/bewertung_loeschen' => 'RatingController@delete',
     '/hervorheben' => 'RatingController@setSelection',
+    '/hervorheben_abwaehlen' => 'RatingController@unsetSelection',
 );
