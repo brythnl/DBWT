@@ -38,7 +38,7 @@
             <td>{{ utf8_encode($rating['bemerkung']) }}</td>
             <td>{{ $rating['sterne'] }}</td>
             @if ($admin)
-                <td><a>Hervorheben</a></td>
+                <td><a href="/hervorheben?gerichtid={{ $rating['gericht_id'] }}">Hervorheben</a></td>
             @endif
           </tr>
         @endforeach
