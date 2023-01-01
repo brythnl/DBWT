@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/bewertung.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/gericht.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/../models/benutzer.php');
 
 class RatingController {
     public function index(RequestData $request) {
