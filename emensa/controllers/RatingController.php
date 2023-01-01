@@ -53,4 +53,11 @@ class RatingController {
 
         header('Location: /bewertung?gerichtid=' . $gerichtid);
     }
+
+    public function unsetSelection(RequestData $request) {
+        $gerichtid = $request->query['gerichtid'];
+        unset_selection($gerichtid);
+
+        header('Location: /bewertung?gerichtid=' . $gerichtid);
+    }
 }
