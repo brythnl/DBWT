@@ -3,12 +3,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/../models/benutzer.php');
 
 class AuthController {
     public function index(RequestData $rd) {
-      $msg = $_SESSION['login_result_message'] ?? NULL;
-      $gerichtid = $rd->query['gerichtid'];
-      return view('login', [
-        'msg' => $msg,
-        'gerichtid' => $gerichtid
-      ]);
+        $msg = $_SESSION['login_result_message'] ?? NULL;
+        $gerichtid = $rd->query['gerichtid'] ?? NULL;
+        return view('login', [
+            'msg' => $msg,
+            'gerichtid' => $gerichtid
+        ]);
     }
 
     public function check(RequestData $rd) {
@@ -37,16 +37,16 @@ class AuthController {
             successfulLoginUpdate($id);
             $_SESSION['username'] = $username;
             
-            if ($_SESSION['access_rating']) {
-              header('Location: /bewertung?gerichtid=' . $rd->query['gerichtid']);
+            if ($rd->query['gerichtid'] != NULL) {
+                header('Location: /bewertung?gerichtid=' . $rd->query['gerichtid']);
             } else {
-              header('Location: /');
+                header('Location: /');
             }
         } else {
             $logger->warning('Bitte die korrekten Anmeldedaten eintragen!');
             $_SESSION['login_result_message'] = 'Falscher Name oder Passwort! Bitte erneut eintragen.';
             if ($exist) {
-              setLoginTime($username, true); // User existiert aber falsches passwort
+                setLoginTime($username, true); // User existiert aber falsches passwort
             }
             header('Location: /anmeldung');
         }
