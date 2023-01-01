@@ -46,4 +46,11 @@ class RatingController {
 
         header('Location: /meinebewertung');
     }
+
+    public function setSelection(RequestData $request) {
+        $gerichtid = $request->query['gerichtid'];
+        set_selection($gerichtid);
+
+        header('Location: /bewertung?gerichtid=' . $gerichtid);
+    }
 }
