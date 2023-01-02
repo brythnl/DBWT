@@ -18,7 +18,12 @@ class Gericht extends Illuminate\Database\Eloquent\Model {
         return number_format($value, 2, ",", ".");
     }
 
+    function getPreisExternAttribute($value) {
+        return number_format($value, 2, ",", ".");
+    }
+
     
+
 
 
 
