@@ -1,5 +1,14 @@
 <?php
 
+class Bewertung extends Illuminate\Database\Eloquent\Model {
+    protected $table = 'bewertung';
+
+    protected $primaryKey = 'gericht_id';
+    public $timestamps = false;
+
+    protected $fillable = ['hervorhebung'];
+}
+
 function saveData($gerichtid, $bemerkung, $sterne, $name, $autor) {
     $link = connectdb();
 
