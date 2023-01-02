@@ -33,15 +33,20 @@
           <th>Bewertung</th>
         </tr>
         @foreach ($ratings as $rating) 
-          <tr>
-            <td>{{ utf8_encode($rating['NAME']) }}</td>
-            <td>{{ utf8_encode($rating['bemerkung']) }}</td>
-            <td>{{ $rating['sterne'] }}</td>
-            @if ($admin)
-                <td><a href="/hervorheben?gerichtid={{ $rating['gericht_id'] }}">Hervorheben</a></td>
-                <td><a href="/hervorheben_abwaehlen?gerichtid={{ $rating['gericht_id'] }}">Hervorhebung abwählen</a></td>
-            @endif
-          </tr>
+            <tr 
+            <?php 
+                if ($rating['hervorhebung'] == 1) {
+                    echo 'class="hervorgehoben"';
+                }
+            ?> >
+                <td>{{ utf8_encode($rating['NAME']) }}</td>
+                <td>{{ utf8_encode($rating['bemerkung']) }}</td>
+                <td>{{ $rating['sterne'] }}</td>
+                @if ($admin)
+                    <td><a href="/hervorheben?gerichtid={{ $rating['gericht_id'] }}">Hervorheben</a></td>
+                    <td><a href="/hervorheben_abwaehlen?gerichtid={{ $rating['gericht_id'] }}">Hervorhebung abwählen</a></td>
+                @endif
+            </tr>
         @endforeach
     </table>
   </section>
