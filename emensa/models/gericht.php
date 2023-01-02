@@ -22,12 +22,15 @@ class Gericht extends Illuminate\Database\Eloquent\Model {
         return number_format($value, 2, ",", ".");
     }
 
-    
-
-
-
-
-
+    // Mutators 
+    function setVegetarischAttribute($value) {
+        $checkedValue = strtolower(str_replace(' ', '', $value));
+        if ($checkedValue == 'yes' || $checkedValue == 'ja') {
+            $this->attributes['vegetarisch'] = true;
+        } else if ($checkedValue == 'no' || $checkedValue == 'nein') {
+            $this->attributes['vegetarisch'] = false;
+        }
+    }
 }
 
 function db_gericht_select_all() {
