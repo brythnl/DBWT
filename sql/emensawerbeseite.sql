@@ -80,7 +80,7 @@ CREATE TABLE `benutzer` (
   `letzterfehler` datetime DEFAULT NULL COMMENT 'Zeitpunkt, an dem sich der/die Benutzer:in zuletzt\r\nerfolglos angemeldet hat',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,8 @@ CREATE TABLE `benutzer` (
 LOCK TABLES `benutzer` WRITE;
 /*!40000 ALTER TABLE `benutzer` DISABLE KEYS */;
 INSERT INTO `benutzer` VALUES
-(1,'Bryan','admin@emensa.example','59b3e8d637cf97edbe2384cf59cb7453dfe30789',1,0,0,NULL,NULL);
+(1,'Admin1','admin@emensa-example.com','59b3e8d637cf97edbe2384cf59cb7453dfe30789',1,0,30,'2023-01-01 17:52:15','2022-12-29 18:51:26'),
+(2,'user1','user1@emensa-example.com','59b3e8d637cf97edbe2384cf59cb7453dfe30789',0,0,3,'2023-01-01 17:31:36',NULL);
 /*!40000 ALTER TABLE `benutzer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,6 +116,45 @@ LOCK TABLES `besucher` WRITE;
 INSERT INTO `besucher` VALUES
 (24);
 /*!40000 ALTER TABLE `besucher` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bewertung`
+--
+
+DROP TABLE IF EXISTS `bewertung`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bewertung` (
+  `gericht_id` bigint(20) NOT NULL,
+  `bemerkung` varchar(800) NOT NULL CHECK (octet_length(`bemerkung`) >= 5),
+  `sterne` enum('sehr gut','gut','schlecht','sehr schlecht') NOT NULL,
+  `zeitpunkt` datetime NOT NULL DEFAULT current_timestamp(),
+  `NAME` varchar(80) NOT NULL,
+  `autor` varchar(100) NOT NULL,
+  `hervorhebung` tinyint(1) NOT NULL DEFAULT 0,
+  KEY `gericht_id` (`gericht_id`),
+  CONSTRAINT `bewertung_ibfk_1` FOREIGN KEY (`gericht_id`) REFERENCES `gericht` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bewertung`
+--
+
+LOCK TABLES `bewertung` WRITE;
+/*!40000 ALTER TABLE `bewertung` DISABLE KEYS */;
+INSERT INTO `bewertung` VALUES
+(13,'desc1','sehr gut','2022-12-29 21:46:51','Drei Reibekuchen mit Apfelmus','admin@emensa-example.com',0),
+(11,'desc2','sehr gut','2022-12-29 21:47:25','Kartoffel-Lauch-Suppe','admin@emensa-example.com',0),
+(16,'desc3','schlecht','2022-12-29 21:47:41','Käsebrötchen','admin@emensa-example.com',0),
+(12,'desc4','sehr schlecht','2022-12-29 21:47:54','Kassler mit Rosmarinkartoffeln','admin@emensa-example.com',0),
+(8,'desc6user1','gut','2022-12-29 21:54:29','Gemüsepfanne','user1@emensa-example.com',0),
+(8,'desc7user1','sehr schlecht','2022-12-29 21:54:40','Gemüsepfanne','user1@emensa-example.com',0),
+(13,'desc8user1','schlecht','2022-12-29 21:55:00','Drei Reibekuchen mit Apfelmus','user1@emensa-example.com',0),
+(3,'desc9user1','sehr gut','2022-12-29 22:54:15','Bratkartoffeln mit Zwiebeln','user1@emensa-example.com',0),
+(4,'desc10user1','schlecht','2022-12-29 22:54:49','Grilltofu','user1@emensa-example.com',0);
+/*!40000 ALTER TABLE `bewertung` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -351,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-13 17:50:01
+-- Dump completed on 2023-01-02 15:12:39
