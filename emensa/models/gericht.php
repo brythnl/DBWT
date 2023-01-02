@@ -8,6 +8,21 @@ class Gericht extends Illuminate\Database\Eloquent\Model {
 
     protected $primaryKey = 'id';
     public $timestamps = false;
+
+    protected $casts = [
+        'vegetarisch' => 'boolean',
+        'vegan' => 'boolean',
+    ];
+    // Accessors
+    function getPreisInternAttribute($value) {
+        return number_format($value, 2, ",", ".");
+    }
+
+    
+
+
+
+
 }
 
 function db_gericht_select_all() {
