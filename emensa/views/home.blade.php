@@ -33,6 +33,24 @@
         </div>
     </article>
 
+    <section id="meinungen">
+        <h2>Meinungen unserer Gäste</h2>
+        <table>
+            <tr>
+              <th>Name</th>
+              <th>Bemerkung</th>
+              <th>Bewertung</th>
+            </tr>
+            @foreach ($ratings as $rating) 
+                <tr>
+                    <td>{{ utf8_encode($rating['NAME']) }}</td>
+                    <td>{{ utf8_encode($rating['bemerkung']) }}</td>
+                    <td>{{ $rating['sterne'] }}</td>
+                </tr>
+            @endforeach
+        </table>
+    </section>
+
     <section id="speisen">
         <h2>Köstlichkeiten, die Sie erwarten</h2>
         <table>
