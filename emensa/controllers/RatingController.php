@@ -38,7 +38,11 @@ class RatingController {
 
     public function userRating() {
         if ($_SESSION['login_ok']) {
-            $ratings = get_user_ratings_chronological($_SESSION['username']);
+            $ratings = Bewertung::query()
+                        ->where('autor', $_SESSION['username'])
+                        ->orderBy('zeitpunkt', 'DESC')
+                        ->get();
+            //$ratings = get_user_ratings_chronological($_SESSION['username']);
             return view('userRating', [
                 'ratings'=>$ratings,
             ]);
@@ -46,7 +50,10 @@ class RatingController {
     }
 
     public function delete(RequestData $request) {
-        delete_user_rating($request->query['gerichtid'], $request->query['autor']);
+        Bewertung::where('gericht_id', $request->query['gerichtid'])
+            ->where('autor', $request->query['autor'])
+            ->delete();
+        //delete_user_rating($request->query['gerichtid'], $request->query['autor']);
 
         header('Location: /meinebewertung');
     }
