@@ -8,7 +8,11 @@ class RatingController {
         $gerichtid = $request->query['gerichtid'];
         if ($_SESSION['login_ok']) {
             $gericht = getNameImg($gerichtid);
-            $ratings = get_30_ratings_chronological();
+            $ratings = Bewertung::query()
+                        ->orderBy('zeitpunkt', 'DESC')
+                        ->limit(30)
+                        ->get();
+            //$ratings = get_30_ratings_chronological();
             $admin = checkAdmin($_SESSION['username']);
             return view('rating', [
                 'gerichtid'=>$gerichtid,
@@ -49,14 +53,15 @@ class RatingController {
 
     public function setSelection(RequestData $request) {
         $gerichtid = $request->query['gerichtid'];
-        set_selection($gerichtid);
+           
+        //set_selection($gerichtid);
 
         header('Location: /bewertung?gerichtid=' . $gerichtid);
     }
 
     public function unsetSelection(RequestData $request) {
         $gerichtid = $request->query['gerichtid'];
-        unset_selection($gerichtid);
+        //unset_selection($gerichtid);
 
         header('Location: /bewertung?gerichtid=' . $gerichtid);
     }
