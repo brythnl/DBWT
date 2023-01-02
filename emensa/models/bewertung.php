@@ -68,3 +68,15 @@ function unset_selection($id) {
     
     mysqli_close($link);
 }
+
+function get_selected_ratings() {
+    $link = connectdb();
+
+    $sql = "SELECT * FROM bewertung WHERE hervorhebung = 1";
+    $result = mysqli_query($link, $sql);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+    mysqli_close($link);
+
+    return $data;
+}
