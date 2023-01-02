@@ -53,7 +53,10 @@ class RatingController {
 
     public function setSelection(RequestData $request) {
         $gerichtid = $request->query['gerichtid'];
-           
+        Bewertung::query()->updateOrCreate([
+            'gericht_id' => $gerichtid],
+            ['hervorhebung' => 1]
+        );   
         //set_selection($gerichtid);
 
         header('Location: /bewertung?gerichtid=' . $gerichtid);
