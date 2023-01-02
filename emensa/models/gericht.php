@@ -31,6 +31,15 @@ class Gericht extends Illuminate\Database\Eloquent\Model {
             $this->attributes['vegetarisch'] = false;
         }
     }
+
+    function setVeganAttribute($value) {
+        $checkedValue = strtolower(str_replace(' ', '', $value));
+        if ($checkedValue == 'yes' || $checkedValue == 'ja') {
+            $this->attributes['vegan'] = true;
+        } else if ($checkedValue == 'no' || $checkedValue == 'nein') {
+            $this->attributes['vegan'] = false;
+        }
+    }
 }
 
 function db_gericht_select_all() {
