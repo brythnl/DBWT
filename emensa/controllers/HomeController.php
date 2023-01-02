@@ -10,6 +10,10 @@ class HomeController {
         $gerichte = Gericht::query()
                         ->orderBy('name')
                         ->get();
+        // Demo für vegetarisch mutators
+        $veg = Gericht::query()->find(1);
+        $veg->vegetarisch = ' nE i N ';
+        $veg->save();
         //$gerichte = db_gericht_select_all();
         $ratings = get_selected_ratings();
         $logger = logger();
@@ -18,6 +22,7 @@ class HomeController {
             'rd' => $request,
             'gerichte'=>$gerichte,
             'ratings'=>$ratings,
+            'veg'=>$veg,
         ]);
     }
     
