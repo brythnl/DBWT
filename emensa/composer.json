@@ -1,7 +1,13 @@
 {
-    "require": {
-        "eftec/bladeone": "^4.7",
-        "ext-mysqli": "*",
-        "monolog/monolog": "^3.2"
-    }
+  "require": {
+    "eftec/bladeone": "^4.7",
+    "ext-mysqli": "*",
+    "monolog/monolog": "^3.2",
+    "illuminate/database": "^9.45"
+  },
+  "autoload": {
+    "classmap": [
+      "models"
+    ]
+  }
 }
