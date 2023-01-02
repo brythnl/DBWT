@@ -64,6 +64,10 @@ class RatingController {
 
     public function unsetSelection(RequestData $request) {
         $gerichtid = $request->query['gerichtid'];
+        Bewertung::query()->updateOrCreate([
+           'gericht_id' => $gerichtid],
+            ['hervorhebung' => 0]
+        );
         //unset_selection($gerichtid);
 
         header('Location: /bewertung?gerichtid=' . $gerichtid);
