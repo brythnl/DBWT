@@ -11,7 +11,7 @@
     @endif
   ></td>
 
-  <form action="/bewertung_speichern?gerichtid={{ $gerichtid }}" method="post">
+  <form id="rating-form" action="/bewertung_speichern?gerichtid={{ $gerichtid }}" method="post">
     <label for="bemerkung">Bemerkungen:</label>
     <textarea id="bemerkung" name="bemerkung" minlength="5" maxlength="800"></textarea>
     <label for="sterne">Sterne:</label>
