@@ -2,6 +2,14 @@
 /**
  * Diese Datei enthält alle SQL Statements für die Tabelle "gerichte"
  */
+
+class Gericht extends Illuminate\Database\Eloquent\Model {
+    protected $table = 'gericht';
+
+    protected $primaryKey = 'id';
+    public $timestamps = false;
+}
+
 function db_gericht_select_all() {
     try {
         $link = connectdb();
