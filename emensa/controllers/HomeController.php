@@ -7,7 +7,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/../models/bewertung.php');
 /* Datei: controllers/HomeController.php */
 class HomeController {
     public function index(RequestData $request) {
-        $gerichte = db_gericht_select_all();
+        $gerichte = Gericht::query()
+                        ->orderBy('name')
+                        ->get();
+        //$gerichte = db_gericht_select_all();
         $ratings = get_selected_ratings();
         $logger = logger();
         $logger->info('Hauptseite aufgeruft!');
