@@ -25,6 +25,12 @@
         <img src="/img/mensa.jpg" id="mensa" alt="mensa">
     </div>
 
+    @if ($veg['vegetarisch']) 
+        <p>true</p>
+    @else 
+        <p>false</p>
+    @endif
+
     <article id="ankundigung">
         <h2>Bald gibt es Essen auch online ;)</h2>
         <div id="ankundigungsbox">  
