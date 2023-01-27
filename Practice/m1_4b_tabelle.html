@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Tabelle</title>
+  </head>
+  <body>
+    <table border="1">
+      <tbody>
+        <tr>
+          <td>Art</td>
+          <td>Gericht</td>
+          <td>Preis</td>
+          <td>Werktag</td>
+          <td>Wochenende</td>
+          <td>Inhaltsstoffe</td>
+        </tr>
+        <tr>
+          <td>Vegetarisch</td>
+          <td>Kürbis-Chia-Teller</td>
+          <td>2,10€</td>
+          <td colspan="2" rowspan="2">Ganze Woche</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td rowspan="2">Pasta</td>
+          <td>Spaghetti Carciofo</td>
+          <td>3,50€</td>
+          <!-- Wenn es ein rowspan/colspan gibt, naechste td automatisch uebersprungen-->
+          <td>A, A1</td>
+        </tr>
+        <tr>
+          <td>Bandnudeln</td>
+          <td>3,50€</td>
+          <td></td>
+          <td>x</td>
+          <td>A, D, A1</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
