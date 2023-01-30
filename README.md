@@ -30,6 +30,7 @@ The practices and projects are based on the Datenbanken & Webtechnologien course
 
 **What I learned:**
 
+- Login & Basic Auth with PHP
 - MVC pattern, how models, views, and controllers work with each other
 - Composer (Versioning, Managing packages)
 - Blade template to create views (layouts, pages)
