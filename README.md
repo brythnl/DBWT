@@ -64,14 +64,3 @@ The practices and projects are based on the Datenbanken & Webtechnologien course
 - Indexing
 
 ---
-
-### What I plan to learn in the future:
-
-- Frameworks, like Laravel or Symfony for PHP & Vue or React for JavaScript (although in this repo there are no JS)
-- CMS, like WordPress or TYPO3
-- WebSockets
-- Key-Value-Stores, like Redis
-- CSS Tools, like Tailwind & SASS
-- and many more...
-
-### Wish me luck! :joy:
